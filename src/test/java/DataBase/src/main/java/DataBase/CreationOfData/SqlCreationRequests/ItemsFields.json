@@ -1,0 +1,152 @@
+[
+  {
+    "ItemSerialNumber": "0123687954",
+    "ItemName": "Item1"
+  },
+  {
+    "ItemQuantity": "16",
+    "ItemSellingPrice": "125.65",
+    "ItemID": "1"
+  },
+  {
+    "ItemPaidPricePerPiece": "99.99",
+    "DetailsID": "1"
+  },
+  {
+    "ItemSerialNumber": "0123687955",
+    "ItemName": "Item2"
+  },
+  {
+    "ItemQuantity": "13",
+    "ItemSellingPrice": "86.99",
+    "ItemID": "2"
+
+  },
+  {
+    "ItemPaidPricePerPiece": "50",
+    "DetailsID": "2"
+
+  },
+  {
+    "ItemSerialNumber": "0123686956",
+    "ItemName": "Item3"
+
+  },
+  {
+    "ItemQuantity": "1",
+    "ItemSellingPrice": "25.65",
+    "ItemID": "3"
+
+  },
+  {
+    "ItemPaidPricePerPiece": "16",
+    "DetailsID": "3"
+
+  },
+  {
+    "ItemSerialNumber": "0123684959",
+    "ItemName": "Item4"
+  },
+  {
+    "ItemQuantity": "6",
+    "ItemSellingPrice": "149.99",
+    "ItemID": "4"
+
+  },
+  {
+    "ItemPaidPricePerPiece": "109.99",
+    "DetailsID": "4"
+
+  },
+  {
+    "ItemSerialNumber": "0123637976",
+    "ItemName": "Item5"
+  },
+  {
+    "ItemQuantity": "16",
+    "ItemSellingPrice": "49.65",
+    "ItemID": "5"
+
+  },
+  {
+    "ItemPaidPricePerPiece": "35",
+    "DetailsID": "5"
+
+  },
+  {
+    "ItemSerialNumber": "0123688001",
+    "ItemName": "Item6"
+  },
+  {
+    "ItemQuantity": "4",
+    "ItemSellingPrice": "1234.65",
+    "ItemID": "6"
+
+  },
+  {
+    "ItemPaidPricePerPiece": "899.99",
+    "DetailsID": "6"
+
+  },
+  {
+    "ItemSerialNumber": "0963688001",
+    "ItemName": "Item7"
+  },
+  {
+    "ItemQuantity": "1236",
+    "ItemSellingPrice": "1.55",
+    "ItemID": "7"
+
+  },
+  {
+    "ItemPaidPricePerPiece": "0.55",
+    "DetailsID": "7"
+
+
+  },
+  {
+    "ItemSerialNumber": "0123688002",
+    "ItemName": "Item8"
+  },
+  {
+    "ItemQuantity": "236",
+    "ItemSellingPrice": "2.99",
+    "ItemID": "8"
+
+  },
+  {
+    "ItemPaidPricePerPiece": "0.99",
+    "DetailsID": "8"
+
+  },
+  {
+    "ItemSerialNumber": "0123688003",
+    "ItemName": "Item9"
+  },
+  {
+    "ItemQuantity": "12",
+    "ItemSellingPrice": "5.99",
+    "ItemID": "9"
+
+  },
+  {
+    "ItemPaidPricePerPiece": "2.50",
+    "DetailsID": "9"
+
+  },
+  {
+    "ItemSerialNumber": "0123688001",
+    "ItemName": "Item10"
+  },
+  {
+    "ItemQuantity": "40",
+    "ItemSellingPrice": "15.99",
+    "ItemID": "10"
+
+  },
+  {
+    "ItemPaidPricePerPiece": "9.99",
+    "DetailsID": "10"
+
+  }
+]
