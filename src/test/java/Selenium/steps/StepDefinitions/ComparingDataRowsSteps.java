@@ -1,16 +1,15 @@
 package Selenium.steps.StepDefinitions;
 
 
-import DataBase.src.test.java.DAO.TablesMysql;
-import DataBase.src.test.java.DAO.TablesOracle;
-import DataBase.src.test.java.Driver.Master;
-import DataBase.src.test.java.POJO.Items;
+import DataBase.DAO.TablesMysql;
+import DataBase.DAO.TablesOracle;
+import DataBase.Driver.Master;
+import DataBase.POJO.Items;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class ComparingDataRowsSteps {
 
