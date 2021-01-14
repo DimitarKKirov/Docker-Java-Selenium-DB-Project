@@ -1,5 +1,6 @@
 package DataBase.Config;
 
+import DataBase.Driver.DatabaseDriver;
 import DataBase.POJO.*;
 import DataBase.interfaces.DatabaseHelper;
 import DataBase.sqlRequests.SQLQueries;
@@ -10,7 +11,7 @@ import java.util.List;
  * this class implements methods for operating with the
  * Oracle database (or the set database)
  */
-public class PostgresDatabaseDriver extends DatabaseDriver implements SQLQueries, DatabaseHelper {
+public class PostgresDatabaseOperations extends DatabaseDriver implements SQLQueries, DatabaseHelper {
 
 
     /**

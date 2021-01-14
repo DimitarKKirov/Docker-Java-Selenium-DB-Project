@@ -1,4 +1,4 @@
-package DataBase.Config;
+package DataBase.Driver;
 
 
 import LocalDataBaseCreationRelatedFiles.DataBaseConnectionProperties.Paths;

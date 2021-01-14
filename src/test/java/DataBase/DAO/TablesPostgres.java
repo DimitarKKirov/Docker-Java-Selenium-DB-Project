@@ -1,13 +1,13 @@
 package DataBase.DAO;
 
-import DataBase.Config.PostgresDatabaseDriver;
+import DataBase.Config.PostgresDatabaseOperations;
 import DataBase.POJO.Items;
 
 public class TablesPostgres {
 
-    private PostgresDatabaseDriver Driver;
+    private PostgresDatabaseOperations Driver;
 
-    public TablesPostgres(PostgresDatabaseDriver Driver) {
+    public TablesPostgres(PostgresDatabaseOperations Driver) {
         this.Driver = Driver;
     }
 

@@ -1,14 +1,14 @@
 package DataBase.DAO;
 
-import DataBase.Config.MySQLDatabaseDriver;
+import DataBase.Config.MySQLDatabaseOperations;
 
 import DataBase.POJO.Items;
 
 public class TablesMysql {
 
-    private MySQLDatabaseDriver Driver;
+    private MySQLDatabaseOperations Driver;
 
-    public TablesMysql(MySQLDatabaseDriver Driver) {
+    public TablesMysql(MySQLDatabaseOperations Driver) {
         this.Driver = Driver;
     }
 

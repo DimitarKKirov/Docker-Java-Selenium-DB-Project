@@ -1,5 +1,6 @@
 package DataBase.Config;
 
+import DataBase.Driver.DatabaseDriver;
 import DataBase.POJO.*;
 import DataBase.interfaces.DatabaseHelper;
 import DataBase.sqlRequests.SQLQueries;
@@ -11,7 +12,7 @@ import java.util.List;
  * this class implements methods for operating with the
  * Mysql database (or the set database)
  */
-public class MySQLDatabaseDriver extends DatabaseDriver implements SQLQueries, DatabaseHelper {
+public class MySQLDatabaseOperations extends DatabaseDriver implements SQLQueries, DatabaseHelper {
 
 
     /**

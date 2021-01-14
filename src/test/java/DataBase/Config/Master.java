@@ -9,8 +9,8 @@ package DataBase.Config;
 public class Master {
 
     private static Master Master = new Master();
-    private MySQLDatabaseDriver Mysql;
-    private PostgresDatabaseDriver Oracle;
+    private MySQLDatabaseOperations Mysql;
+    private PostgresDatabaseOperations Oracle;
 
 
     public static Master getMaster() {
@@ -23,9 +23,9 @@ public class Master {
      * otherwise is returning the instance of the class
      * @return MySQLDatabaseDriver instance
      */
-    public MySQLDatabaseDriver MysqlDriver() {
+    public MySQLDatabaseOperations MysqlDriver() {
         if (Mysql == null) {
-            Mysql = new MySQLDatabaseDriver();
+            Mysql = new MySQLDatabaseOperations();
         }
         return Mysql;
     }
@@ -35,9 +35,9 @@ public class Master {
      * otherwise is returning the instance of the class
      * @return OracleDatabaseDriver instance
      */
-    public PostgresDatabaseDriver postgresDriver() {
+    public PostgresDatabaseOperations postgresDriver() {
         if (Oracle == null) {
-            Oracle = new PostgresDatabaseDriver();
+            Oracle = new PostgresDatabaseOperations();
         }
         return Oracle;
     }
