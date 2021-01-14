@@ -3,6 +3,8 @@ package Selenium.pageObjects.pageObjectsEmag;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import Selenium.pageObjects.pManagerEmag.EmagRegularElements;
+import org.openqa.selenium.interactions.Actions;
+
 /**
  * this class represents the Login page of Emag web shop site
  * class with predefined web elements with actions
@@ -35,7 +37,9 @@ public class SearchInEmag extends EmagRegularElements {
      *               as the search criteria
      */
     public void enterInSearchFieldRemote(String search) {
+        Actions actions = new Actions(dockerDriver);
         WebElement searchField = dockerDriver.findElement(By.xpath("//input[@id=\"searchboxTrigger\"]"));
+        actions.moveToElement(searchField).build().perform();
         searchField.click();
         searchField.sendKeys(search);
     }
@@ -57,8 +61,9 @@ public class SearchInEmag extends EmagRegularElements {
      * the search button in order the search to be initiated
      */
     public void clickSearchRemote() {
-        dockerDriver.findElement(By.xpath("//i[@class=\"em em-close\"]")).click();
+        Actions actions = new Actions(dockerDriver);
         WebElement searchButton = dockerDriver.findElement(By.xpath("//i[@class=\"em em-search\"]"));
+        actions.moveToElement(searchButton).build().perform();
         searchButton.click();
     }
 
