@@ -1,8 +1,8 @@
 package Selenium.steps.StepDefinitions;
 
 import DataBase.DAO.TablesMysql;
-import DataBase.DAO.TablesOracle;
-import DataBase.Driver.Master;
+import DataBase.DAO.TablesPostgres;
+import DataBase.Config.Master;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,10 +13,10 @@ public class ComparingDBDataCountSteps {
     private int countORCL;
     private boolean ask;
 
-    @Given("user extracts the data from DB Mysql")
-    public void userExtractsTheDataFromDBMysql() {
+    @Given("user extracts the data from DB {string}")
+    public void userExtractsTheDataFromDBMysql(String databaseName) {
         TablesMysql Test = new TablesMysql(Master.getMaster().MysqlDriver());
-        Test.sqlConnection();
+        Test.sqlConnection(databaseName);
         int a = Test.getCount();
         int b = Test.getItemDetailsCount();
         int c = Test.getLoadItemCount();
@@ -26,10 +26,10 @@ public class ComparingDBDataCountSteps {
 
     }
 
-    @Given("the data from Oracle DB")
-    public void userExtractsTheDataFromDBOracle() {
-        TablesOracle TestORCL = new TablesOracle(Master.getMaster().OracleDriver());
-        TestORCL.oracleConnection();
+    @Given("the data from {string} DB")
+    public void userExtractsTheDataFromDBOracle(String databaseName) {
+        TablesPostgres TestORCL = new TablesPostgres(Master.getMaster().postgresDriver());
+        TestORCL.oracleConnection(databaseName);
         int ab = TestORCL.getCountOracle();
         int bc = TestORCL.getItemDetailsCountOracle();
         int cd = TestORCL.getLoadItemCountOracle();

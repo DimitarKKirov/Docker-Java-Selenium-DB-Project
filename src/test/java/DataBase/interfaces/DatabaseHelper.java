@@ -1,8 +1,6 @@
 package DataBase.interfaces;
 
 import DataBase.POJO.*;
-import DataBase.src.test.java.POJO.*;
-import LocalDataBaseCreationRalatedFiles.src.test.java.POJO.*;
 
 import java.util.List;
 
@@ -13,14 +11,12 @@ import java.util.List;
 public interface DatabaseHelper {
 
 
-    List<MySQLItems> getAllData();
-    List<OracleTables> getAllDataOracle();
+    List<AllDataTables> getAllData();
     int getItemsCount();
     int getItemsDetailsCount();
     int getLoadCount();
-    String getItemByName(String name);
     Items getItemByID(int ID);
-    String getItemByIDNumber(int ID);
-    ItemsDetails getItemDetailsByID(int ID);
-    ItemsLoadingDetails getItemLoadingDetailsByID(int ID);
+
+
+
 }

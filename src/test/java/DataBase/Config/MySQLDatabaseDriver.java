@@ -1,4 +1,4 @@
-package DataBase.Driver;
+package DataBase.Config;
 
 import DataBase.POJO.*;
 import DataBase.interfaces.DatabaseHelper;
@@ -22,8 +22,8 @@ public class MySQLDatabaseDriver extends DatabaseDriver implements SQLQueries, D
      * it can be found in package POJO
      */
     @Override
-    public List<MySQLItems> getAllData() {
-        return Yank.queryBeanList(getALL, MySQLItems.class, null);
+    public List<AllDataTables> getAllData() {
+        return Yank.queryBeanList(getALL, AllDataTables.class, null);
 
     }
 
@@ -31,10 +31,6 @@ public class MySQLDatabaseDriver extends DatabaseDriver implements SQLQueries, D
         unused method in this class
         it needs to be overridden because of interface DatabaseHelper
      */
-    @Override
-    public List<OracleTables> getAllDataOracle() {
-        return null;
-    }
 
 
     /**
@@ -53,48 +49,7 @@ public class MySQLDatabaseDriver extends DatabaseDriver implements SQLQueries, D
         return Yank.queryBean(sql, Items.class, null);
     }
 
-    /*
-        unused method in this class
-        it needs to be overridden because of interface DatabaseHelper
-     */
-    @Override
-    public String getItemByIDNumber(int ID) {
-        return null;
-    }
 
-
-    /**
-     * method for retrieving data from table ItemDetails by filed ID
-     *
-     * @param ID method takes and int parameter and searches the
-     *           connected database for fields that are
-     *           with ID equal to the int variable using
-     *           Yank library for sending the sql query
-     * @return the return type of the method is a POJO class ItemsDetails
-     * located in Pojo Package
-     */
-    @Override
-    public ItemsDetails getItemDetailsByID(int ID) {
-        String sql = getItemsDetailsByID + ID;
-        return Yank.queryBean(sql, ItemsDetails.class, null);
-    }
-
-    /**
-     * method for retrieving an ItemLoadingDetails data by filed ID
-     *
-     * @param ID method takes and int parameter and searches the
-     *           connected database for fields that are
-     *           with ID equal to the int variable using
-     *           Yank library for sending the sql query
-     * @return the return type of the method is a POJO class ItemsLoadingDetails
-     * located in Pojo Package
-     */
-    @Override
-    public ItemsLoadingDetails getItemLoadingDetailsByID(int ID) {
-        String sql = getLoadItemByID + ID;
-        return Yank.queryBean(sql, ItemsLoadingDetails.class, null);
-
-    }
 
     /**
      * method returns filed count from the Table Items in the database
@@ -129,22 +84,6 @@ public class MySQLDatabaseDriver extends DatabaseDriver implements SQLQueries, D
         return Yank.queryScalar(getLoadItemCount, Integer.class, null);
     }
 
-    /**
-     * method for retrieving an items data by item Name
-     *
-     * @param name method takes the String parameter that is passed for the name of the item
-     *             and searches the database table Items
-     *             using Yank library for sending the sql query
-     * @return the return type of this method is String
-     * the string contains the data of the fields that
-     * contain the name of the item (the passed String parameter to the method)
-     */
-    @Override
-    public String getItemByName(String name) {
-        String sql = getItemByNames + name;
-        return Yank.queryBean(sql, Items.class, null).toString();
-    }
-
 
     /**
      * creating connection for Mysql database
@@ -152,8 +91,8 @@ public class MySQLDatabaseDriver extends DatabaseDriver implements SQLQueries, D
      * extended class DatabaseDriver
      */
     @Override
-    public void createMySQLConnection() {
-        super.createMySQLConnection();
+    public void createConnection(String databaseName) {
+        super.createConnection(databaseName);
     }
 
 

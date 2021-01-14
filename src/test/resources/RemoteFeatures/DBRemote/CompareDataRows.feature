@@ -2,8 +2,8 @@
 Feature: check data rows are identical
 
   Scenario Outline:
-    Given user extracts data from <row> of MySql Database
-    And <rows> from Oracle Database
+    Given user extracts data from <row> of "MySql" Database
+    And <rows> from "Postgres" Database
     Then the user compares the rows data and its the same
     Examples:
       | row | rows |

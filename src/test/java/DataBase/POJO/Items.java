@@ -1,7 +1,7 @@
 package DataBase.POJO;
 
 
-import LocalDataBaseCreationRalatedFiles.DataBaseConnectionProperties.Paths;
+import LocalDataBaseCreationRelatedFiles.DataBaseConnectionProperties.Paths;
 
 /**
  * This class represents the database Table Items

@@ -1,7 +1,7 @@
 package DataBase.DAO;
 
-import DataBase.Driver.MySQLDatabaseDriver;
-import DataBase.src.test.java.POJO.*;
+import DataBase.Config.MySQLDatabaseDriver;
+
 import DataBase.POJO.Items;
 
 public class TablesMysql {
@@ -12,8 +12,8 @@ public class TablesMysql {
         this.Driver = Driver;
     }
 
-    public void sqlConnection() {
-        Driver.createMySQLConnection();
+    public void sqlConnection(String databaseName) {
+        Driver.createConnection(databaseName);
     }
 
     public int getCount() {

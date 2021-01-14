@@ -7,7 +7,7 @@ public class StartExistingContainers {
         DockerEnv con = new DockerEnv();
         con.connect();
         con.startContainer("mydb");
-        con.startContainer("oracle18");
+//        con.startContainer("oracle18");
         con.startContainer("mypostdb");
         con.startContainer("alonecrome");
         con.startContainer("alonefox");    }

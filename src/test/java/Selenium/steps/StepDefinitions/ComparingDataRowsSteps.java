@@ -2,8 +2,8 @@ package Selenium.steps.StepDefinitions;
 
 
 import DataBase.DAO.TablesMysql;
-import DataBase.DAO.TablesOracle;
-import DataBase.Driver.Master;
+import DataBase.DAO.TablesPostgres;
+import DataBase.Config.Master;
 import DataBase.POJO.Items;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,20 +17,20 @@ public class ComparingDataRowsSteps {
     ArrayList<Items> oracleDBO = new ArrayList<>();
     boolean asd;
 
-    @Given("user extracts data from {int} of MySql Database")
-    public void extractingDataFromMySQLDB(int idMysql) {
+    @Given("user extracts data from {int} of {string} Database")
+    public void extractingDataFromMySQLDB(int idMysql,String databaseName) {
         TablesMysql mySQLDB = new TablesMysql(Master.getMaster().MysqlDriver());
-        mySQLDB.sqlConnection();
+        mySQLDB.sqlConnection(databaseName);
             myDB.add(mySQLDB.getItemById(idMysql));
 
         System.out.println(myDB.size());
         mySQLDB.closeConnectionMy();
     }
 
-    @Given("{int} from Oracle Database")
-    public void extractingDataFromOracleDB(int idOracle) {
-        TablesOracle oracleDB = new TablesOracle(Master.getMaster().OracleDriver());
-        oracleDB.oracleConnection();
+    @Given("{int} from {string} Database")
+    public void extractingDataFromOracleDB(int idOracle,String databaseName) {
+        TablesPostgres oracleDB = new TablesPostgres(Master.getMaster().postgresDriver());
+        oracleDB.oracleConnection(databaseName);
             oracleDBO.add(oracleDB.getItemByIdOracle(idOracle));
         System.out.println(oracleDBO.size());
         oracleDB.closeConnectionOracle();

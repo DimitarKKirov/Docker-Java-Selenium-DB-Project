@@ -1,7 +1,7 @@
-package LocalDataBaseCreationRalatedFiles.POJOForTables;
+package LocalDataBaseCreationRelatedFiles.POJOForTables;
 
 
-import LocalDataBaseCreationRalatedFiles.DataBaseConnectionProperties.Paths;
+import LocalDataBaseCreationRelatedFiles.DataBaseConnectionProperties.Paths;
 
 /**
  * class representing the database Item Table

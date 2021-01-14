@@ -1,4 +1,4 @@
-package DataBase.Driver;
+package DataBase.Config;
 
 /**
  * Singleton initialization of classes
@@ -10,7 +10,7 @@ public class Master {
 
     private static Master Master = new Master();
     private MySQLDatabaseDriver Mysql;
-    private OracleDatabaseDriver Oracle;
+    private PostgresDatabaseDriver Oracle;
 
 
     public static Master getMaster() {
@@ -35,9 +35,9 @@ public class Master {
      * otherwise is returning the instance of the class
      * @return OracleDatabaseDriver instance
      */
-    public OracleDatabaseDriver OracleDriver() {
+    public PostgresDatabaseDriver postgresDriver() {
         if (Oracle == null) {
-            Oracle = new OracleDatabaseDriver();
+            Oracle = new PostgresDatabaseDriver();
         }
         return Oracle;
     }

@@ -3,7 +3,7 @@ package DataBase.POJO;
 /**
  * This class represents the all data Tables in Oracle database
  */
-public class OracleTables {
+public class AllDataTables {
 
 
     private int itemSerialNumber;
@@ -12,6 +12,7 @@ public class OracleTables {
     private int itemID;
     private double itemPaidPricePerPiece;
     private double itemSellingPrice;
+    private int detailsID;
 
     public int getItemSerialNumber() {
         return itemSerialNumber;
@@ -61,12 +62,21 @@ public class OracleTables {
         this.itemSellingPrice = itemSellingPrice;
     }
 
-    public OracleTables(int itemSerialNumber, String itemName, int itemQuantity, int itemID, double itemPaidPricePerPiece, double itemSellingPrice) {
+    public int getDetailsID() {
+        return detailsID;
+    }
+
+    public void setDetailsID(int detailsID) {
+        this.detailsID = detailsID;
+    }
+
+    public AllDataTables(int itemSerialNumber, String itemName, int itemQuantity, int itemID, double itemPaidPricePerPiece, double itemSellingPrice, int detailsID) {
         this.itemSerialNumber = itemSerialNumber;
         this.itemName = itemName;
         this.itemQuantity = itemQuantity;
         this.itemID = itemID;
         this.itemPaidPricePerPiece = itemPaidPricePerPiece;
         this.itemSellingPrice = itemSellingPrice;
+        this.detailsID = detailsID;
     }
 }

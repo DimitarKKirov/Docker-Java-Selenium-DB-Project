@@ -1,18 +1,18 @@
 package DataBase.DAO;
 
-import DataBase.Driver.OracleDatabaseDriver;
+import DataBase.Config.PostgresDatabaseDriver;
 import DataBase.POJO.Items;
 
-public class TablesOracle {
+public class TablesPostgres {
 
-    private OracleDatabaseDriver Driver;
+    private PostgresDatabaseDriver Driver;
 
-    public TablesOracle(OracleDatabaseDriver Driver) {
+    public TablesPostgres(PostgresDatabaseDriver Driver) {
         this.Driver = Driver;
     }
 
-    public void oracleConnection() {
-        Driver.createOracleConnection();
+    public void oracleConnection(String databaseName) {
+        Driver.createConnection(databaseName);
     }
 
     public int getCountOracle() {

@@ -1,4 +1,4 @@
-package LocalDataBaseCreationRalatedFiles.POJOForTables;
+package LocalDataBaseCreationRelatedFiles.POJOForTables;
 
 /**
  * class representing the database ItemsDetails Table
