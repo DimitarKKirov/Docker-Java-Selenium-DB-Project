@@ -13,10 +13,15 @@ public interface Paths {
     String CorrectDummyData = jsonData.getAbsolutePath();
     String WrongDummyData = jsonDataOrcl.getAbsolutePath();
 
-    Properties OracleConnection = PropertiesUtils.getPropertiesFromPath("./src/main/java/LocalDataBaseCreationRelatedFiles/DataBaseConnectionProperties/OracleConnection.properties");
-    Properties OracleSql = PropertiesUtils.getPropertiesFromPath("./src/main/java/LocalDataBaseCreationRelatedFiles/CreationOfData/SqlCreationRequests/OracleDataTableCreationRequest.properties");
-    Properties MysqlConnection = PropertiesUtils.getPropertiesFromPath("./src/main/java/LocalDataBaseCreationRelatedFiles/DataBaseConnectionProperties/MysqlConnection.properties");
-    Properties MySql = PropertiesUtils.getPropertiesFromPath("./src/main/java/LocalDataBaseCreationRelatedFiles/CreationOfData/SqlCreationRequests/MysqlDataTableCreationRequest.properties");
-    Properties PostgresConnection = PropertiesUtils.getPropertiesFromPath("./src/main/java/LocalDataBaseCreationRelatedFiles/DataBaseConnectionProperties/PostgresConnection.properties");
-    Properties PostgresSql = PropertiesUtils.getPropertiesFromPath("./src/main/java/LocalDataBaseCreationRelatedFiles/CreationOfData/SqlCreationRequests/PostgresDataTableCreationRequest.properties");
+    Properties OracleConnection = PropertiesUtils.getPropertiesFromPath("./src/main/java/localDataBaseCreationRelatedFiles/dataBaseConnectionProperties/OracleConnection.properties");
+
+    Properties OracleSql = PropertiesUtils.getPropertiesFromPath("./src/main/java/localDataBaseCreationRelatedFiles/creationOfData/sqlTablesCreationRequests/OracleDataTableCreationRequest.properties");
+
+    Properties MysqlConnection = PropertiesUtils.getPropertiesFromPath("./src/main/java/localDataBaseCreationRelatedFiles/dataBaseConnectionProperties/MysqlConnection.properties");
+
+    Properties MySql = PropertiesUtils.getPropertiesFromPath("./src/main/java/localDataBaseCreationRelatedFiles/creationOfData/sqlTablesCreationRequests/MysqlDataTableCreationRequest.properties");
+
+    Properties PostgresConnection = PropertiesUtils.getPropertiesFromPath("./src/main/java/localDataBaseCreationRelatedFiles/dataBaseConnectionProperties/PostgresConnection.properties");
+
+    Properties PostgresSql = PropertiesUtils.getPropertiesFromPath("./src/main/java/localDataBaseCreationRelatedFiles/creationOfData/sqlTablesCreationRequests/PostgresDataTableCreationRequest.properties");
 }

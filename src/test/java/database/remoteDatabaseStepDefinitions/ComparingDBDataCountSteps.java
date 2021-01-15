@@ -1,4 +1,4 @@
-package selenium.steps.remoteDatabaseStepDefinitions;
+package database.remoteDatabaseStepDefinitions;
 
 import database.DAO.TablesMysql;
 import database.DAO.TablesPostgres;
@@ -41,7 +41,6 @@ public class ComparingDBDataCountSteps {
 
     @When("the user compares the data")
     public void comparesData() {
-
         if (countSQL==countORCL){
             ask=true;
         }else {

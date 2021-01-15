@@ -18,12 +18,11 @@ public  abstract class DatabaseDriver implements Paths {
      * the method creates connection for the set database in properties file
      */
     public void createConnection(String databaseName) {
-        if (databaseName.equalsIgnoreCase("Oracle")) {
+        if (databaseName.equalsIgnoreCase("oracle")) {
             Yank.setupDefaultConnectionPool(OracleConnection);
-        } else if (databaseName.equalsIgnoreCase("Mysql")) {
+        } else if (databaseName.equalsIgnoreCase("mysql")) {
             Yank.setupDefaultConnectionPool(MysqlConnection);
-
-        } else if (databaseName.equalsIgnoreCase("Postgres")) {
+        } else if (databaseName.equalsIgnoreCase("postgres")) {
             Yank.setupDefaultConnectionPool(PostgresConnection);
         }
 

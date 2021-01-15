@@ -1,4 +1,4 @@
-package database.POJO;
+package localDataBaseCreationRelatedFiles.POJOForTables;
 
 /**
  * This class represents the all data Tables in Oracle database

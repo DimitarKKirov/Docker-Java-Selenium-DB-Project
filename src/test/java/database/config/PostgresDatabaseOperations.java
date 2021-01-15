@@ -1,9 +1,11 @@
 package database.config;
 
 import database.driver.DatabaseDriver;
-import database.POJO.*;
+
 import database.interfaces.DatabaseHelper;
 import database.sqlRequests.SQLQueries;
+import localDataBaseCreationRelatedFiles.POJOForTables.AllDataTables;
+import localDataBaseCreationRelatedFiles.POJOForTables.Items;
 import org.knowm.yank.Yank;
 
 import java.util.List;

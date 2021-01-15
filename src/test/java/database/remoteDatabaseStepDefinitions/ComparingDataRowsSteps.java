@@ -1,21 +1,22 @@
-package selenium.steps.remoteDatabaseStepDefinitions;
+package database.remoteDatabaseStepDefinitions;
 
 
 import database.DAO.TablesMysql;
 import database.DAO.TablesPostgres;
 import database.config.Master;
-import database.POJO.Items;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import localDataBaseCreationRelatedFiles.POJOForTables.Items;
 import org.junit.Assert;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class ComparingDataRowsSteps {
 
     ArrayList<Items> myDB = new ArrayList<>();
     ArrayList<Items> oracleDBO = new ArrayList<>();
-    boolean asd;
+
 
     @Given("user extracts data from {int} of {string} Database")
     public void extractingDataFromMySQLDB(int idMysql,String databaseName) {
@@ -23,27 +24,26 @@ public class ComparingDataRowsSteps {
         mySQLDB.sqlConnection(databaseName);
             myDB.add(mySQLDB.getItemById(idMysql));
 
-        System.out.println(myDB.size());
+        System.out.println(oracleDBO.size());
         mySQLDB.closeConnectionMy();
     }
 
     @Given("{int} from {string} Database")
     public void extractingDataFromOracleDB(int idOracle,String databaseName) {
-        TablesPostgres oracleDB = new TablesPostgres(Master.getMaster().postgresDriver());
-        oracleDB.oracleConnection(databaseName);
-            oracleDBO.add(oracleDB.getItemByIdOracle(idOracle));
+        TablesPostgres DB = new TablesPostgres(Master.getMaster().postgresDriver());
+        DB.oracleConnection(databaseName);
+            oracleDBO.add(DB.getItemByIdOracle(idOracle));
+
         System.out.println(oracleDBO.size());
-        oracleDB.closeConnectionOracle();
+        DB.closeConnectionOracle();
     }
 
 
     @Then("the user compares the rows data and its the same")
     public void comparingListsWithData() {
-        int i = 0;
-            Assert.assertEquals(oracleDBO.get(i).getItemName(), myDB.get(i).getItemName());
-            Assert.assertEquals(oracleDBO.get(i).getItemSerialNumber(),myDB.get(i).getItemSerialNumber());
+            Assert.assertEquals(oracleDBO.get(0).getItemName(), myDB.get(0).getItemName());
+            Assert.assertEquals(oracleDBO.get(0).getItemsSerialNumber(),myDB.get(0).getItemsSerialNumber());
 
-        asd= true;
 
     }
 

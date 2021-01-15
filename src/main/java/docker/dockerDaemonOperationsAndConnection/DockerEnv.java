@@ -424,6 +424,7 @@ public class DockerEnv {
      * @param port2 exposed port for the first created container, syntax - local machine:container
      */
     public void createDBContainers(File dockerFile, String name, String port1, File dockerFile2, String secondName, String port2) {
+        System.out.println("Downloading and creating databases");
         dockerClient.buildImageCmd()
                 .withDockerfile(dockerFile)
                 .withTag(name)
@@ -447,6 +448,7 @@ public class DockerEnv {
         dockerClient.startContainerCmd(secondName).exec();
         dockerClient.removeImageCmd("mysql/mysql-server").exec();
         dockerClient.removeImageCmd("postgres").exec();
+        System.out.println("images downloaded and containers are created and started");
     }
 
 }

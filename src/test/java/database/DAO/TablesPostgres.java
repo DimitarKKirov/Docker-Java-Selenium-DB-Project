@@ -1,7 +1,7 @@
 package database.DAO;
 
 import database.config.PostgresDatabaseOperations;
-import database.POJO.Items;
+import localDataBaseCreationRelatedFiles.POJOForTables.Items;
 
 public class TablesPostgres {
 

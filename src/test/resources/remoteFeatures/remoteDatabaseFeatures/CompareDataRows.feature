@@ -12,3 +12,4 @@ Feature: check data rows are identical
       | 5   | 5    |
       | 7   | 7    |
       | 9   | 9    |
+      | 10  | 10   |

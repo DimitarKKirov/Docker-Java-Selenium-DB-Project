@@ -7,10 +7,10 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         monochrome = true,
-        features = {"src/test/resources/RemoteFeatures"},
+        features = {"src/test/resources/remoteFeatures"},
         tags = "@Show",
         plugin = {"pretty","html:target/cucumber-hmtl-report","json:target/cucumber.json"},
-        glue = {"Selenium.steps.RemoteWebShopLilly","Selenium.steps.StepDefinitions","Selenium.steps.webShopEmag"},
+        glue = {"selenium.steps.remoteShopLillyStepDefinitions","database.remoteDatabaseStepDefinitions","selenium.steps.remoteShopEmagStepDefinitions"},
         dryRun=false
 )
 
