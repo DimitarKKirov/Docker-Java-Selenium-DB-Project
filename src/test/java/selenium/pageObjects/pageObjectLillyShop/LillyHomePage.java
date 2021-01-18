@@ -15,16 +15,6 @@ public class LillyHomePage extends LillyRegularsElements {
     /**
      * this method finds and clicks the login button
      * that is located on the home page
-     * using the local driver class that uses the exe driver file
-     */
-    public void clickLogin() {
-        driver.findElement(By.xpath("//li[@class=\"authorization-link\"]/a")).click();
-
-    }
-
-    /**
-     * this method finds and clicks the login button
-     * that is located on the home page
      * using the remote driver that is set to connect and
      * use the docker standalone chrome/firefox container
      * class that uses the Maven dependency

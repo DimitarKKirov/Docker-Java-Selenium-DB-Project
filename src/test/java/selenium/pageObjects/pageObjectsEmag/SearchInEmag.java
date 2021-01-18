@@ -14,20 +14,6 @@ public class SearchInEmag extends EmagRegularElements {
 
 
     /**
-     * using the local driver inhterited form EmagRegularElements
-     * the method is locating and clicking
-     * the search field in the landing page
-     * and entering the passed string variable
-     * @param search passed string variable that is used
-     *               as the search criteria
-     */
-    public void enterInSearchField(String search) {
-        WebElement searchField = driver.findElement(By.xpath("//input[@id=\"searchboxTrigger\"]"));
-        searchField.click();
-        searchField.sendKeys(search);
-    }
-
-    /**
      * using the remote driver inhterited form EmagRegularElements
      * that is set to connect and use the docker standalone chrome/firefox container
      * the method is locating and clicking
@@ -44,14 +30,6 @@ public class SearchInEmag extends EmagRegularElements {
         searchField.sendKeys(search);
     }
 
-    /**
-     * using the local driver the method is locating and clicking
-     * the search button in order the search to be initiated
-     */
-    public void clickSearch() {
-        WebElement searchButton = driver.findElement(By.xpath("//i[@class=\"em em-search\"]"));
-        searchButton.click();
-    }
 
     /**
      * using the remote driver that is set to connect and

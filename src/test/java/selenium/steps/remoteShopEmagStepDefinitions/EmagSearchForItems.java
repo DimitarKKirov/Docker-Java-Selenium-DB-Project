@@ -39,6 +39,7 @@ public class EmagSearchForItems {
     public void the_user_can_see_the_results(String expected) {
         String result = searchEmag.remoteSearchResult();
         Assert.assertEquals(expected, result);
+        searchEmag.quitRemoteBrowser();
 
 
     }

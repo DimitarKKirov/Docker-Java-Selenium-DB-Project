@@ -42,11 +42,7 @@ public class ComparingDBDataCountSteps {
     @When("the user compares the data")
     public void comparesData() {
 
-        if (countSQL==countORCL){
-            ask=true;
-        }else {
-            ask=false;
-        }
+        ask= countSQL == countORCL;
 
     }
 
