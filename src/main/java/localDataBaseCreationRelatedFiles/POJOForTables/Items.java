@@ -7,7 +7,7 @@ import localDataBaseCreationRelatedFiles.dataBaseConnectionProperties.Paths;
  * class representing the database Item Table
  * for filling the data in the table
  */
-public class Items {
+public class Items implements Paths {
 
 
 

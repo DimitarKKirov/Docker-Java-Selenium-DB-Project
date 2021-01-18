@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Class used for creating WebDrivers for the requested web browser
@@ -157,11 +159,10 @@ public class Drivers implements DriverSwitchBrowser {
      * @throws MalformedURLException
      */
     public WebDriver remoteConnect(String url, String browserName) throws MalformedURLException {
-
+        Logger.getLogger("org.openqa.selenium.remote").setLevel(Level.WARNING);
 
         if (browserName.equalsIgnoreCase("Chrome")) {
-            DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-            capabilities.setPlatform(Platform.LINUX);
+
             ChromeOptions options = new ChromeOptions();
             options.addArguments("PlatformName", "Linux");
             options.addArguments("--disable-dev-shm-usage");
@@ -171,8 +172,6 @@ public class Drivers implements DriverSwitchBrowser {
 
 
         } else if (browserName.equalsIgnoreCase("FireFox")) {
-            DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-            capabilities.setPlatform(Platform.LINUX);
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--no-sandbox");
@@ -181,8 +180,6 @@ public class Drivers implements DriverSwitchBrowser {
 
 
         } else if (browserName.equalsIgnoreCase("chromeHeadless")) {
-            DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-            capabilities.setPlatform(Platform.LINUX);
             ChromeOptions options = new ChromeOptions();
             options.addArguments("PlatformName", "Linux");
             options.addArguments("--disable-dev-shm-usage");

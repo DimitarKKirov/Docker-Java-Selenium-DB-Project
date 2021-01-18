@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/remoteFeatures"},
         tags = "@Show",
         plugin = {"pretty","html:target/cucumber-hmtl-report","json:target/cucumber.json"},
-        glue = {"selenium.steps.remoteShopLillyStepDefinitions","database.remoteDatabaseStepDefinitions","selenium.steps.remoteShopEmagStepDefinitions"},
+        glue = {"selenium.steps.remoteShopLillyStepDefinitions","database.steps.remoteDatabaseStepDefinitions","selenium.steps.remoteShopEmagStepDefinitions"},
         dryRun=false
 )
 

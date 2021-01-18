@@ -4,4 +4,5 @@ ENV MYSQL_DATABASE=testdb
 ENV MYSQL_PASSWORD=dimitar
 ENV MYSQL_USER=dimitar
 
+EXPOSE 8080:3306
 COPY ./create.sql /docker-entrypoint-initdb.d/create.sql

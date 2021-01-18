@@ -7,9 +7,8 @@ public class StopExistingContainers {
         DockerEnv con = new DockerEnv();
         con.connect();
         con.stopContainer("mydb");
-        con.stopContainer("oracle18");
         con.stopContainer("mypostdb");
-        con.stopContainer("alonecrome");
+        con.stopContainer("alonechrome");
         con.stopContainer("alonefox");
     }
 }

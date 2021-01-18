@@ -1,8 +1,8 @@
 package database.DAO;
 
 import database.config.MySQLDatabaseOperations;
-import localDataBaseCreationRelatedFiles.POJOForTables.Items;
 
+import database.POJO.Items;
 
 public class TablesMysql {
 

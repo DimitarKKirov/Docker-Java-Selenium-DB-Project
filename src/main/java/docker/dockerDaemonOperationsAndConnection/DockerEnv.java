@@ -1,6 +1,7 @@
 package docker.dockerDaemonOperationsAndConnection;
 
 import com.github.dockerjava.api.DockerClient;
+import com.github.dockerjava.api.command.BuildImageResultCallback;
 import com.github.dockerjava.api.command.LogContainerCmd;
 import com.github.dockerjava.api.command.PullImageResultCallback;
 import com.github.dockerjava.api.model.*;
@@ -12,7 +13,9 @@ import com.github.dockerjava.core.command.LogContainerResultCallback;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -40,10 +43,6 @@ public class DockerEnv {
         LogContainerCmd logContainerCmd = dockerClient.logContainerCmd(containerName);
         logContainerCmd.withStdOut(true).withStdErr(true);
         logContainerCmd.withSince(lastLogTime);
-        // UNIX timestamp (integer) to filter logs. Specifying a timestamp will only output log-entries since that timestamp.
-        // logContainerCmd.withTail(4);
-        // get only the last 4 log entries
-
         logContainerCmd.withTimestamps(true);
 
         try {
@@ -73,7 +72,7 @@ public class DockerEnv {
      * Settings->General Tab->Expose daemon on tcp://localhost:2375 without TLS : this is ok for local use
      * not recommended for remote, if possible Expose the port with TLS
      */
-    public void connect() {
+    public void     connect() {
         DockerClientConfig standard = DefaultDockerClientConfig.createDefaultConfigBuilder().withDockerHost("tcp://localhost:2375").build();
         dockerClient = DockerClientBuilder.getInstance(standard).build();
 
@@ -92,12 +91,11 @@ public class DockerEnv {
      * as in docker Cli we are able to use tag Latest for the image version
      *
      * @param name target name of the image of Docker repository
-     * @param tag  target image version, default is "latest"
      * @throws InterruptedException
      */
     public void pull(String name) throws InterruptedException {
         dockerClient.pullImageCmd(name)
-                .exec(new PullImageResultCallback())
+                .start()
                 .awaitCompletion(60, TimeUnit.SECONDS);
 
 
@@ -107,12 +105,13 @@ public class DockerEnv {
         try {
             System.out.println("start downloading, it will take 10-15 min or more, depending on your internet connection");
             dockerClient.pullImageCmd(imageName)
-                    .exec(new PullImageResultCallback())
+                    .start()
                     .awaitCompletion(25, TimeUnit.MINUTES);
             System.out.println("download is completed");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        dockerClient.removeImageCmd("pvargacl/oracle-xe-18.4.0").exec();
     }
 
     /**
@@ -129,6 +128,7 @@ public class DockerEnv {
                 .withEnv(envV)
                 .withName(containerName)
                 .withPortSpecs(ports).exec();
+        System.out.println("container "+containerName+" is created");
     }
 
     /**
@@ -144,6 +144,7 @@ public class DockerEnv {
                 .withName(containerName)
                 .withPortBindings(one)
                 .exec();
+        System.out.println("container "+containerName+" is created");
     }
 
     /**
@@ -156,6 +157,7 @@ public class DockerEnv {
         dockerClient.createContainerCmd(imageName)
                 .withName(containerName)
                 .exec();
+        System.out.println("container "+containerName+" is created");
     }
 
 
@@ -167,6 +169,7 @@ public class DockerEnv {
      */
     public void removeContainer(String name) {
         dockerClient.removeContainerCmd(name).exec();
+        System.out.println("container "+name+" is removed (deleted)");
     }
 
 
@@ -178,6 +181,7 @@ public class DockerEnv {
      */
     public void stopContainer(String name) {
         dockerClient.stopContainerCmd(name).exec();
+        System.out.println("container "+name+" is stopped");
     }
 
 
@@ -189,12 +193,8 @@ public class DockerEnv {
      */
     public void startContainer(String name) {
         dockerClient.startContainerCmd(name).exec();
+        System.out.println("container "+name+" is started");
     }
-
-    public void startContainerIT(String name) {
-        dockerClient.execStartCmd("run -it" + name);
-    }
-
 
     /**
      * if there is a container we can kill it by sending the command with the name of the container
@@ -216,7 +216,9 @@ public class DockerEnv {
      * @param name giving a name of the network for easy linking
      */
     public void createNetwork(String name) {
-        dockerClient.createNetworkCmd().withName(name).exec();
+        dockerClient.createNetworkCmd()
+                .withName(name)
+                .exec();
     }
 
 
@@ -247,7 +249,7 @@ public class DockerEnv {
                 " depending on your internet connection");
         dockerClient.buildImageCmd()
                 .withDockerfile(dockerfile)
-                .withTag(name)
+                .withTags(Collections.singleton(name))
                 .start()
                 .awaitImageId();
         System.out.println("download complete");
@@ -255,9 +257,11 @@ public class DockerEnv {
 
     public void imageFromDockerFileToJenkinsContainer(File dockerfile, String containerName, String ports, String vncPort) {
         try {
+            System.out.println("start downloading, it will take 5-10 min or more," +
+                    " depending on your internet connection");
             dockerClient.buildImageCmd().
                     withDockerfile(dockerfile)
-                    .withTag(containerName)
+                    .withTags(Collections.singleton(containerName))
                     .start()
                     .awaitCompletion(120, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
@@ -271,7 +275,8 @@ public class DockerEnv {
                 .withName(containerName)
                 .exec();
         dockerClient.startContainerCmd(containerName).exec();
-
+        System.out.println("download complete,created and started container," +
+                "please see logs for account password");
     }
 
     public void imageFromOracleDockerFile(File dockerfile, String name) {
@@ -280,11 +285,15 @@ public class DockerEnv {
         try {
             dockerClient.buildImageCmd()
                     .withDockerfile(dockerfile)
-                    .withTag(name)
-                    .start().awaitCompletion(30, TimeUnit.MINUTES);
+                    .withTags(Collections.singleton(name))
+                    .start()
+                    .awaitCompletion(30, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            System.out.println("times up, need to try again, too slow internet connection"+
+                    "please change the time limit of the method");
         }
+        dockerClient.removeImageCmd("pvargacl/oracle-xe-18.4.0");
         System.out.println("download complete");
     }
 
@@ -299,23 +308,6 @@ public class DockerEnv {
      */
     public void removeImage(String name) {
         dockerClient.removeImageCmd(name).exec();
-    }
-
-
-
-    /**
-     * initialization of a swarm with default settings
-     */
-    public void swarmInit() {
-        SwarmSpec spec = new SwarmSpec();
-        dockerClient.initializeSwarmCmd(spec).exec();
-    }
-
-    /**
-     * leaving the swarm with option for force leave
-     */
-    public void leaveSwarm() {
-        dockerClient.leaveSwarmCmd().withForceEnabled(true).exec();
     }
 
     /**
@@ -352,7 +344,7 @@ public class DockerEnv {
         try {
             dockerClient.pullImageCmd("selenium/standalone-chrome-debug")
                     .withTag("latest")
-                    .exec(new PullImageResultCallback())
+                    .start()
                     .awaitCompletion(120, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -387,14 +379,14 @@ public class DockerEnv {
         try {
             dockerClient.pullImageCmd("selenium/standalone-firefox-debug")
                     .withTag("latest")
-                    .exec(new PullImageResultCallback())
+                    .start()
                     .awaitCompletion(120, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         PortBinding one = PortBinding.parse(ports);
         PortBinding two = PortBinding.parse(vncPort);
-        Volume volume = Volume.parse("/dev/shm/dev/shm");
+        Volume volume = new Volume("/dev/shm/dev/shm");
         dockerClient.createContainerCmd("selenium/standalone-firefox-debug")
                 .withVolumes(volume)
                 .withPortBindings(one,two)
@@ -424,21 +416,22 @@ public class DockerEnv {
      * @param port2 exposed port for the first created container, syntax - local machine:container
      */
     public void createDBContainers(File dockerFile, String name, String port1, File dockerFile2, String secondName, String port2) {
-        System.out.println("Downloading and creating databases");
+        System.out.println("downloading and creating containers");
         dockerClient.buildImageCmd()
+                .withTags(Collections.singleton(name))
                 .withDockerfile(dockerFile)
-                .withTag(name)
                 .start()
                 .awaitImageId();
         dockerClient.createContainerCmd(name)
                 .withName(name)
                 .withPortBindings(PortBinding.parse(port1))
                 .exec();
+
         dockerClient.startContainerCmd(name).exec();
 
-        dockerClient.buildImageCmd()
+        dockerClient.buildImageCmd().withForcerm(true)
                 .withDockerfile(dockerFile2)
-                .withTag(secondName)
+                .withTags(Collections.singleton(secondName))
                 .start()
                 .awaitImageId();
         dockerClient.createContainerCmd(secondName)
@@ -448,7 +441,14 @@ public class DockerEnv {
         dockerClient.startContainerCmd(secondName).exec();
         dockerClient.removeImageCmd("mysql/mysql-server").exec();
         dockerClient.removeImageCmd("postgres").exec();
-        System.out.println("images downloaded and containers are created and started");
+        System.out.println("containers are up and running");
+    }
+
+
+    public void volumeCreation(String nameOfVolume){
+        System.out.println("creating volume");
+        dockerClient.createVolumeCmd().withName(nameOfVolume).exec();
+        System.out.println("volume created");
     }
 
 }

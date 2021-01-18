@@ -1,9 +1,6 @@
 package database.interfaces;
 
-
-
-import localDataBaseCreationRelatedFiles.POJOForTables.AllDataTables;
-import localDataBaseCreationRelatedFiles.POJOForTables.Items;
+import database.POJO.*;
 
 import java.util.List;
 

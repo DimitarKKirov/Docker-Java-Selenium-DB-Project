@@ -34,6 +34,7 @@ public class LillyHomeProductsListRemoteSteps {
         String title = lillyHomeProducts.getRemotePageTitle();
         Assert.assertEquals("Лили Дрогерие онлайн магазин | Лили Дрогерие", title);
     }
+
     @Given("the user is logged in with {string} and {string}")
     public void loggedIn(String email, String pass) {
         LillyHomePage home = MasterManager.getMasterManager().lillyPageManager().lillyHomePage();
@@ -64,7 +65,7 @@ public class LillyHomeProductsListRemoteSteps {
     public void productsShoppingList(String shoppingListLink) {
         lillyHomeProducts = MasterManager.getMasterManager().lillyPageManager().lillyHomeProductsListsPage();
         try {
-            lillyHomeProducts.remoteConnect(shoppingListLink, "chromeheadless");
+            lillyHomeProducts.remoteConnect(shoppingListLink, "chrome");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -95,7 +96,7 @@ public class LillyHomeProductsListRemoteSteps {
             e.printStackTrace();
         }
         String price = lillyHomeProducts.getRemotePriceOfCart();
-        Assert.assertEquals("56,68 лв.",price);
+        Assert.assertEquals("13,38 лв.",price);
     }
 
     @When("the user clicks the basket")
