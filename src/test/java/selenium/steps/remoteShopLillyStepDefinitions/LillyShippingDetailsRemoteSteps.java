@@ -63,11 +63,11 @@ public class LillyShippingDetailsRemoteSteps {
 
     @When("user fill the necessary Data {string},{string},{string},{string},{string} and {string}")
     public void fillNecessaryData(String name, String lastName, String phone, String city, String email, String office) {
-
         shippingDetails = MasterManager.getMasterManager().lillyPageManager().lillyShippingDetailsPage();
+        shippingDetails.clickRemoteCookies();
         shippingDetails.createRemoteWait(5).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class=\"step-title\"]")));
         shippingDetails.createRemoteWait(15).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//a[@class=\"v-button v-accept\"]")));
-        shippingDetails.clickRemoteCookies();
+        shippingDetails.createRemoteWait(10).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id=\"customer-email\"]")));
         shippingDetails.enterRemoteEmailToRegister(email);
         shippingDetails.fieldRemoteFirstName(name);
         shippingDetails.fieldRemoteLastName(lastName);
@@ -86,7 +86,6 @@ public class LillyShippingDetailsRemoteSteps {
 
     @When("pres submit button")
     public void pressContinue() {
-//        shippingDetails.moveToElement(shippingDetails.getStepTitle());
         WebElement radioShipping = shippingDetails.createRemoteWait(5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@value=\"extensaspeedy_speedy_505\"]")));
         shippingDetails.clickElement(radioShipping);
         shippingDetails.clickRemoteContinue();

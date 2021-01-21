@@ -75,6 +75,7 @@ public class Drivers implements DriverSwitchBrowser {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("PlatformName", "Linux");
             options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--window-size=1920,1080");
             options.addArguments("--no-sandbox");
             URL dockerURL = new URL("http://localhost:4445/wd/hub");
             dockerDriver = new RemoteWebDriver(dockerURL, options);
@@ -83,6 +84,7 @@ public class Drivers implements DriverSwitchBrowser {
         } else if (browserName.equalsIgnoreCase("FireFox")) {
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--window-size=1920,1080");
             options.addArguments("--no-sandbox");
             URL dockerURL = new URL("http://localhost:4444/wd/hub");
             dockerDriver = new RemoteWebDriver(dockerURL, options);

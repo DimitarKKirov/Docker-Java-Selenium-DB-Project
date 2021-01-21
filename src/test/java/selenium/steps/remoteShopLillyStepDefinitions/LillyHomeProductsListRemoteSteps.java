@@ -65,7 +65,7 @@ public class LillyHomeProductsListRemoteSteps {
     public void productsShoppingList(String shoppingListLink) {
         lillyHomeProducts = MasterManager.getMasterManager().lillyPageManager().lillyHomeProductsListsPage();
         try {
-            lillyHomeProducts.remoteConnect(shoppingListLink, "chromeheadless");
+            lillyHomeProducts.remoteConnect(shoppingListLink, "chrome");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

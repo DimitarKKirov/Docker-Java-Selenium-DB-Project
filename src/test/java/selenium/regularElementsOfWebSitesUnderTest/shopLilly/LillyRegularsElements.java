@@ -73,7 +73,7 @@ public abstract class LillyRegularsElements extends Drivers implements DriverSwi
     public String getRemotePageTitle() {
         return dockerDriver.getTitle();
     }
-    
+
     /**
      * using the remote driver build in method
      * we are closing the connection to the container instance
